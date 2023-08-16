@@ -20,7 +20,7 @@ public class Graph {
 
         while (!queue.isEmpty()){
             int curr = queue.remove();
-            if(visited[curr] == false){
+            if(!visited[curr]){
                 System.out.print(curr + " ");
                 for (int i=0; i<graph[curr].size(); i++){
                     visited[curr] = true;
@@ -28,10 +28,22 @@ public class Graph {
                     queue.add(e.destination);
                 }
             }
-
-
         }
     }
+
+    static void DFS(ArrayList<Edge> graph[], boolean visited[], int start){
+        System.out.print(start + " ");
+        visited[start] = true;
+
+        for (int i=0; i<graph[start].size(); i++){
+            if (!visited[graph[start].get(i).destination]){
+                DFS(graph,visited,graph[start].get(i).destination);
+            }
+        }
+
+
+    }
+
     public static void main(String[] args) {
         int vertices = 7;
 
@@ -72,9 +84,22 @@ public class Graph {
         // performing BFS
         boolean[] visited = new boolean[vertices];
         for (int i=0; i<vertices; i++){
-            if (visited[i] == false){
+            if (!visited[i]){
                 BFS(graph,visited, 7,i);
+            }
+        }
+
+        System.out.println();
+
+        for (int i=0; i<vertices; i++){
+            visited[i] = false;
+        }
+
+        for (int i=0; i<vertices; i++){
+            if (!visited[i]){
+                DFS(graph,visited,i);
             }
         }
     }
 }
+
