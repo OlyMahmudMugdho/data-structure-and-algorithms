@@ -50,3 +50,23 @@ public class TreeSumDFS {
         System.out.println(sum(root));
     }
 }
+
+
+public class Node {
+    int value;
+    Node left;
+    Node right;
+
+    Node() {};
+
+    Node(int val) {
+        this.value = val;
+    }
+
+    Node(int val, Node r, Node l) {
+        this.value = val;
+        this.right = r;
+        this.left = l;
+    }
+
+}
