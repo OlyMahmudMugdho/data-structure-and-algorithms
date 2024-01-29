@@ -57,6 +57,26 @@ public class BSTAlgorithms
         }
     }
 
+    public static Node insert(Node root, int value)
+    {
+        if (root == null)
+        {
+            root = new Node(value);
+            return root;
+        }
+
+        else if (value < root.value)
+        {
+            root.left = insert(root.left, value);
+        }
+        else if (value > root.value)
+        {
+            root.right = insert(root.right, value);
+        }
+
+        return root;
+    }
+    
     
     /*
      *            7
@@ -69,13 +89,15 @@ public class BSTAlgorithms
      */
     public static void Main(string[] args)
     {
-        Node root = new Node(7);
-        Node five = new Node(5);
-        Node ten = new Node(10);
-        Node one = new Node(1);
-        Node six = new Node(6);
-        Node eight = new Node(8);
-        Node twelve = new Node(12);
+        
+        /*
+           Node root = new Node(7);
+           Node five = new Node(5);
+           Node ten = new Node(10);
+           Node one = new Node(1);
+           Node six = new Node(6);
+           Node eight = new Node(8);
+           Node twelve = new Node(12);
 
         root.left = five;
         root.right = ten;
@@ -83,13 +105,25 @@ public class BSTAlgorithms
         five.right = six;
         ten.left = eight;
         ten.right = twelve;
+        */
         
         // DepthFirstValue(root);
         // Console.WriteLine();
         // DepthFirstValueRecursive(root);
+
+        Node root = new Node(7);
+
+        insert(root, 5);
+        insert(root, 10);
+        insert(root, 1);
+        insert(root, 6);
+        insert(root, 8);
+        insert(root, 12);
         
         BreadthFirstValue(root);
-        
+        Console.WriteLine();
+        // 7 5 10 1 6 8 12 
+        // 
     }
 }
 
@@ -98,8 +132,10 @@ public class Node
     public int value;
     public Node left;
     public Node right;
-    
-    public Node() {}
+
+    public Node()
+    {
+    }
 
     public Node(int value)
     {
