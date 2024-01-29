@@ -57,6 +57,18 @@ public class BSTAlgorithms
         }
     }
 
+    public static void PreOrderTraversal(Node root)
+    {
+        if (root == null)
+        {
+            return;
+        }
+        
+        Console.Write(root.value + " ");
+        PreOrderTraversal(root.left);
+        PreOrderTraversal(root.right);
+    }
+
     public static Node insert(Node root, int value)
     {
         if (root == null)
@@ -120,8 +132,11 @@ public class BSTAlgorithms
         insert(root, 8);
         insert(root, 12);
         
-        BreadthFirstValue(root);
-        Console.WriteLine();
+        /*
+         * BreadthFirstValue(root);
+           Console.WriteLine();
+         */
+        PreOrderTraversal(root);
         // 7 5 10 1 6 8 12 
         // 
     }
