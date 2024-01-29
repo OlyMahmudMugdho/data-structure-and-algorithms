@@ -80,6 +80,18 @@ public class BSTAlgorithms
         PostOrderTraversal(root.right);
         Console.Write(root.value + " ");
     }
+
+    public static void InOrderTraverse(Node root)
+    {
+        if (root == null)
+        {
+            return;
+        }
+        
+        InOrderTraverse(root.left);
+        Console.Write(root.value + " ");
+        InOrderTraverse(root.right);
+    }
     public static Node insert(Node root, int value)
     {
         if (root == null)
@@ -148,8 +160,10 @@ public class BSTAlgorithms
            Console.WriteLine();
          */
         // PreOrderTraversal(root);
-        // 7 5 10 1 6 8 12 
-        PostOrderTraversal(root);
+        
+        // PostOrderTraversal(root);
+        
+        InOrderTraverse(root);
     }
 }
 
