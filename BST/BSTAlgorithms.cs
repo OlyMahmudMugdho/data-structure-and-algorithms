@@ -22,6 +22,18 @@ public class BSTAlgorithms
             }
         }
     }
+    
+    public static void DepthFirstValueRecursive(Node root)
+    {
+        if (root == null)
+        {
+            return;
+        }
+        
+        Console.Write(root.value + " ");
+        DepthFirstValueRecursive(root.left);
+        DepthFirstValueRecursive(root.right);
+    }
 
     
     /*
@@ -51,6 +63,8 @@ public class BSTAlgorithms
         ten.right = twelve;
         
         DepthFirstValue(root);
+        Console.WriteLine();
+        DepthFirstValueRecursive(root);
         
     }
 }
