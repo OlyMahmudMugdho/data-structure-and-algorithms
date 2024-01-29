@@ -34,6 +34,28 @@ public class BSTAlgorithms
         DepthFirstValueRecursive(root.left);
         DepthFirstValueRecursive(root.right);
     }
+    
+    public static void BreadthFirstValue(Node root)
+    {
+        Queue<Node> queue = new Queue<Node>();
+        
+        queue.Enqueue(root);
+
+        while (queue.Count != 0)
+        {
+            Node current = queue.Dequeue();
+            Console.Write(current.value + " ");
+            if (current.left != null)
+            {
+                queue.Enqueue(current.left);
+            }
+
+            if (current.right != null)
+            {
+                queue.Enqueue(current.right);
+            }
+        }
+    }
 
     
     /*
@@ -62,9 +84,11 @@ public class BSTAlgorithms
         ten.left = eight;
         ten.right = twelve;
         
-        DepthFirstValue(root);
-        Console.WriteLine();
-        DepthFirstValueRecursive(root);
+        // DepthFirstValue(root);
+        // Console.WriteLine();
+        // DepthFirstValueRecursive(root);
+        
+        BreadthFirstValue(root);
         
     }
 }
