@@ -1,42 +1,44 @@
 import java.util.*;
-
 public class Graph {
     Map<Character, List<Character>> adjacencyList = new HashMap<>();
 
     public void addVertex(char key) {
-        this.adjacencyList.put(key, new ArrayList<>());
+        adjacencyList.put(key, new ArrayList<>());
     }
 
     public void addEdge(char key, char value) {
-        if(this.adjacencyList.get(key) != null) {
-            this.adjacencyList.get(key).add(value);
+        if(adjacencyList.get(key) != null) {
+            adjacencyList.get(key).add(value);
         }
 
         else {
-            this.adjacencyList.put(key, new ArrayList<>());
-            this.adjacencyList.get(key).add(value);
+            adjacencyList.put(key, new ArrayList<>());
+            adjacencyList.get(key).add(value);
         }
     }
 
     public List<Character> getValues(char key) {
-        return this.adjacencyList.get(key);
+        return adjacencyList.get(key);
     }
 
     public void DFS(){
         Stack<Character> stack = new Stack<>();
-        stack.push(this.adjacencyList.keySet().iterator().next());
+        stack.push(adjacencyList.keySet().iterator().next());
         while (!stack.isEmpty()) {
             Character current = stack.pop();
             System.out.println(current);
-            List<Character> neighbours = this.adjacencyList.get(current);
+            List<Character> neighbours = adjacencyList.get(current);
 
             if(neighbours != null) {
-                for (Character item : neighbours) {
-                    stack.push(item);
-                }
+                stack.addAll(neighbours);
+//                for (Character item : neighbours) {
+//                    stack.push(item);
+//                }
             }
         }
     }
+
+
 
     public static void main(String[] args) {
         Graph graph = new Graph();
@@ -49,8 +51,25 @@ public class Graph {
         graph.addVertex('f');
 
         graph.DFS();
-
+        // BFS(graph);
         // a c e b d f (output of DFS )
+        // a c b e d f
 
+    }
+
+    public static void BFS(Graph graph) {
+        Queue<Character> queue = new LinkedList<>();
+        queue.add(graph.adjacencyList.keySet().iterator().next());
+        while (!queue.isEmpty()){
+            Character current = queue.remove();
+            System.out.println(current);
+            List<Character> values = graph.adjacencyList.get(current);
+            if (values != null) {
+                queue.addAll(values);
+//                for (Character val : values) {
+//                    queue.add(val);
+//                }
+            }
+        }
     }
 }
