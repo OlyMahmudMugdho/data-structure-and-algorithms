@@ -50,6 +50,7 @@ public class Graph {
 
         graph.DFS();
         System.out.println(hasPath(graph,'a','e'));
+        System.out.println(hasPathBFS(graph,'a','e'));
         // BFS(graph);
         // a c e b d f (output of DFS )
         // a c b e d f
@@ -79,10 +80,33 @@ public class Graph {
         }
             List<Character> values = graph.adjacencyList.get(source);
             for (Character value : values) {
-                if (hasPath(graph, value, destination) == true) {
+                if (hasPath(graph, value, destination)) {
                     return true;
-                }   
+                }
             }
+        return false;
+    }
+
+    public static boolean hasPathBFS(Graph graph, char source, char destination){
+
+        if (source == destination) {
+            return true;
+        }
+
+        Queue<Character> queue = new LinkedList<>();
+        queue.add(source);
+        while (!queue.isEmpty()) {
+            Character current = queue.remove();
+            List<Character> values = graph.adjacencyList.get(current);
+            if (values != null) {
+                for (Character value : values) {
+                    if (hasPathBFS(graph, value, destination)) {
+                        return true;
+                    }
+
+                }
+            }
+        }
         return false;
     }
 }
