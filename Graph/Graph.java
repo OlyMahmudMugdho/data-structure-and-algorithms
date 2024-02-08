@@ -40,15 +40,16 @@ public class Graph {
 
     public static void main(String[] args) {
         Graph graph = new Graph();
-        graph.addEdge('a','b');
         graph.addEdge('a','c');
+        graph.addEdge('a','b');
         graph.addEdge('b','d');
         graph.addEdge('c','e');
         graph.addEdge('d','f');
         graph.addVertex('e');
         graph.addVertex('f');
 
-        graph.DFS();
+        // graph.DFS();
+        recursiveDFS(graph,'a');
         System.out.println(hasPath(graph,'a','e'));
         System.out.println(hasPathBFS(graph,'a','e'));
         // BFS(graph);
@@ -109,4 +110,13 @@ public class Graph {
         }
         return false;
     }
+
+    public static void recursiveDFS(Graph graph, char source) {
+        System.out.print(source + " ");
+        List<Character> values = graph.adjacencyList.get(source);
+        for (Character value : values) {
+            recursiveDFS(graph,value);
+        }
+    }
+
 }
