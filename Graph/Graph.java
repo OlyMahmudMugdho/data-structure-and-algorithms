@@ -17,9 +17,7 @@ public class Graph {
         }
     }
 
-    public List<Character> getValues(char key) {
-        return adjacencyList.get(key);
-    }
+
 
     public void DFS(){
         Stack<Character> stack = new Stack<>();
@@ -51,6 +49,7 @@ public class Graph {
         graph.addVertex('f');
 
         graph.DFS();
+        System.out.println(hasPath(graph,'a','e'));
         // BFS(graph);
         // a c e b d f (output of DFS )
         // a c b e d f
@@ -71,5 +70,19 @@ public class Graph {
 //                }
             }
         }
+    }
+
+
+    public static boolean hasPath(Graph graph,char source, char destination) {
+        if (source == destination) {
+            return true;
+        }
+            List<Character> values = graph.adjacencyList.get(source);
+            for (Character value : values) {
+                if (hasPath(graph, value, destination) == true) {
+                    return true;
+                }   
+            }
+        return false;
     }
 }
