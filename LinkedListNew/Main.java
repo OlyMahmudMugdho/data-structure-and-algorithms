@@ -4,7 +4,9 @@ public class Main {
         list.insert(5);
         list.insert(4);
         list.insert(3);
+        list.insert(8);
 
-        System.out.println(list.head.next.value);
+        list.delete(8);
+        list.print();
     }
 }
